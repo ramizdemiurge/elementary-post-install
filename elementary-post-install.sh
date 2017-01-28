@@ -92,6 +92,7 @@ sudo apt install ./bomi.deb -y > /dev/null 2>&1
 echo "Install custom icon theme"
 wget https://www.dropbox.com/s/vtovnhz8a0simgd/elementary-djaler.deb?raw=1 -O elementary-djaler.deb > /dev/null 2>&1
 sudo apt install ./elementary-djaler.deb -y > /dev/null 2>&1
+gsettings set org.gnome.desktop.interface icon-theme elementary-djaler
 echo "Install Transmission"
 wget https://www.dropbox.com/s/geamb02ngdx8uqe/transmission.deb?raw=1 -O transmission.deb > /dev/null 2>&1
 sudo apt install ./transmission.deb -y > /dev/null 2>&1
@@ -100,6 +101,7 @@ wget https://www.dropbox.com/s/9zb4ttn8tez3vn3/zsh-common_5.3-1_all.deb?raw=1 -O
 sudo apt install ./zsh-common.deb -y > /dev/null 2>&1
 wget https://www.dropbox.com/s/qplfrzquplvkdid/zsh_5.3-1_amd64.deb?raw=1 -O zsh.deb > /dev/null 2>&1
 sudo apt install ./zsh.deb -y > /dev/null 2>&1
+sudo -S chsh -s '/bin/zsh' "${USER}"
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox > /dev/null 2>&1
 bash elementary-dropbox/install.sh -n > /dev/null 2>&1
@@ -108,6 +110,34 @@ echo
 echo "*** Uninstall packages ***"
 sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications > /dev/null 2>&1
 sudo apt-get purge -y capnet-assist > /dev/null 2>&1
+sudo apt-get purge -y scratch-text-editor libscratchcore0 > /dev/null 2>&1
+sudo apt-get purge -y appcenter > /dev/null 2>&1
+sudo apt-get purge -y pantheon-calculator > /dev/null 2>&1
+sudo apt-get purge -y maya-calendar maya-calendar-plugin-caldav maya-calendar-plugin-google libmaya-calendar0 > /dev/null 2>&1
+sudo apt-get purge -y epiphany-browser epiphany-browser-data > /dev/null 2>&1
+sudo apt-get purge -y noise libnoise-core0 > /dev/null 2>&1
+sudo apt-get purge -y apport apport-gtk python3-apport apport-symptoms elementary-os-prerelease apport-hooks-elementary elementaryos-report-problem-dockitem > /dev/null 2>&1
+sudo apt-get purge -y screenshot-tool > /dev/null 2>&1
+sudo apt-get purge -y simple-scan > /dev/null 2>&1
+sudo apt-get purge -y audience > /dev/null 2>&1
+sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base > /dev/null 2>&1
+sudo apt-get purge -y language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base > /dev/null 2>&1
+sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian  > /dev/null 2>&1
 echo
 
 git clone https://github.com/png2378/telegram-icon-updater.git > /dev/null 2>&1
@@ -117,8 +147,6 @@ cd /tmp
 
 yadm clone https://github.com/Djaler/dotfiles.git > /dev/null 2>&1
 yadm reset --hard origin/master > /dev/null 2>&1
-
-sudo -S chsh -s '/bin/zsh' "${USER}"
 
 sudo sh -c 'echo "#!/bin/sh" > /etc/grub.d/50_set-zero-timeout'
 sudo sh -c 'echo "set timeout=0" >> /etc/grub.d/50_set-zero-timeout'
