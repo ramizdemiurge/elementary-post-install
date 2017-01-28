@@ -62,12 +62,14 @@ echo "Install Gnome system monitor"
 sudo apt-get install -y gnome-system-monitor > /dev/null 2>&1
 echo "Install Gnome screenshot"
 sudo apt-get install -y gnome-screenshot > /dev/null 2>&1
-echo "Install Hach Font"
+echo "Install Hack Font"
 sudo apt-get install -y fonts-hack-ttf > /dev/null 2>&1
 echo "Install Gdebi"
 sudo apt-get install -y gdebi > /dev/null 2>&1
 echo "Install Git"
 sudo apt-get install -y git > /dev/null 2>&1
+echo "Install Yadm"
+sudo apt-get install -y yadm > /dev/null 2>&1
 echo "Install mysql"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
@@ -98,7 +100,7 @@ wget https://www.dropbox.com/s/9zb4ttn8tez3vn3/zsh-common_5.3-1_all.deb?raw=1 -O
 sudo apt install ./zsh-common.deb -y > /dev/null 2>&1
 wget https://www.dropbox.com/s/qplfrzquplvkdid/zsh_5.3-1_amd64.deb?raw=1 -O zsh.deb > /dev/null 2>&1
 sudo apt install ./zsh.deb -y > /dev/null 2>&1
-echo "*** Install Dropbox ***"
+echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox > /dev/null 2>&1
 bash elementary-dropbox/install.sh -n > /dev/null 2>&1
 echo
