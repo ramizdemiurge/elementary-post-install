@@ -1,3 +1,5 @@
+clear
+
 cd /tmp
 
 echo "*** Enable add-apt-repository ***"
@@ -28,7 +30,7 @@ sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian/ xenial c
 echo
 
 echo "*** Update repositories ***"
-apt update > /dev/null 2>&1
+sudo apt update > /dev/null 2>&1
 echo
 
 echo "*** Install packages ***"
@@ -80,8 +82,8 @@ echo "Install Virtualenv"
 sudo apt-get install -y virtualenv > /dev/null 2>&1
 echo "Install Preload"
 sudo apt-get install -y preload > /dev/null 2>&1
-echo "Install Maven"
-sudo apt-get install -y maven > /dev/null 2>&1
+echo "Install ppa-purge"
+sudo apt-get install -y ppa-purge > /dev/null 2>&1
 echo "Install Steam"
 sudo debconf-set-selections <<< 'steam steam/question select "I AGREE"'
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb  > /dev/null 2>&1
@@ -137,7 +139,11 @@ sudo apt-get purge -y language-pack-tr language-pack-tr-base language-pack-gnome
 sudo apt-get purge -y language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base > /dev/null 2>&1
 sudo apt-get purge -y language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base > /dev/null 2>&1
 sudo apt-get purge -y language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base > /dev/null 2>&1
-sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian  > /dev/null 2>&1
+sudo apt-get purge -y language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base > /dev/null 2>&1
+sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian > /dev/null 2>&1
+sudo apt-get purge -y fonts-noto-cjk > /dev/null 2>&1
+sudo apt-get purge -y gnome-orca > /dev/null 2>&1
+sudo apt-get purge -y snap-photobooth > /dev/null 2>&1
 echo
 
 git clone https://github.com/png2378/telegram-icon-updater.git > /dev/null 2>&1
