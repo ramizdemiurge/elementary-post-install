@@ -72,10 +72,12 @@ echo "Install Git"
 sudo apt-get install -y git > /dev/null 2>&1
 echo "Install Yadm"
 sudo apt-get install -y yadm > /dev/null 2>&1
-echo "Install mysql"
+echo "Install Mysql"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 sudo apt-get install -y mysql-client mysql-server > /dev/null 2>&1
+echo "Install Maven"
+sudo apt-get install -y maven > /dev/null 2>&1
 echo "Install Adb and Fastboot"
 sudo apt-get install -y adb fastboot > /dev/null 2>&1
 echo "Install Virtualenv"
@@ -111,39 +113,19 @@ echo
 
 echo "*** Uninstall packages ***"
 sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications > /dev/null 2>&1
-sudo apt-get purge -y capnet-assist > /dev/null 2>&1
-sudo apt-get purge -y scratch-text-editor libscratchcore0 > /dev/null 2>&1
-sudo apt-get purge -y appcenter > /dev/null 2>&1
-sudo apt-get purge -y pantheon-calculator > /dev/null 2>&1
-sudo apt-get purge -y maya-calendar maya-calendar-plugin-caldav maya-calendar-plugin-google libmaya-calendar0 > /dev/null 2>&1
-sudo apt-get purge -y epiphany-browser epiphany-browser-data > /dev/null 2>&1
-sudo apt-get purge -y noise libnoise-core0 > /dev/null 2>&1
-sudo apt-get purge -y apport apport-gtk python3-apport apport-symptoms elementary-os-prerelease apport-hooks-elementary elementaryos-report-problem-dockitem > /dev/null 2>&1
-sudo apt-get purge -y screenshot-tool > /dev/null 2>&1
-sudo apt-get purge -y simple-scan > /dev/null 2>&1
-sudo apt-get purge -y audience > /dev/null 2>&1
-sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base > /dev/null 2>&1
-sudo apt-get purge -y language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base > /dev/null 2>&1
+sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan screenshot-tool audience snap-photobooth > /dev/null 2>&1
+sudo apt-get purge -y python3-apport apport-symptoms > /dev/null 2>&1
+sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base > /dev/null 2>&1
 sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian > /dev/null 2>&1
 sudo apt-get purge -y fonts-noto-cjk > /dev/null 2>&1
 sudo apt-get purge -y gnome-orca > /dev/null 2>&1
-sudo apt-get purge -y snap-photobooth > /dev/null 2>&1
+sudo apt-get purge -y mpv > /dev/null 2>&1
+sudo apt-get purge -y evolution-data-server zeitgeist-core > /dev/null 2>&1
+sudo apt-get autoremove -y > /dev/null 2>&1
+echo
+
+echo "*** Upgrade packages ***"
+sudo apt-get upgrade -y
 echo
 
 git clone https://github.com/png2378/telegram-icon-updater.git > /dev/null 2>&1
@@ -158,3 +140,7 @@ sudo sh -c 'echo "#!/bin/sh" > /etc/grub.d/50_set-zero-timeout'
 sudo sh -c 'echo "set timeout=0" >> /etc/grub.d/50_set-zero-timeout'
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
+
+sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
+
+sudo reboot
