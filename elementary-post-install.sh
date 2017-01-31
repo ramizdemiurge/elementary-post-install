@@ -125,7 +125,7 @@ sudo apt-get autoremove -y > /dev/null 2>&1
 echo
 
 echo "*** Upgrade packages ***"
-sudo apt-get upgrade -y
+sudo apt-get upgrade -y > /dev/null 2>&1
 echo
 
 git clone https://github.com/png2378/telegram-icon-updater.git > /dev/null 2>&1
@@ -133,14 +133,34 @@ cd telegram-icon-updater
 bash setup.sh --install
 cd /tmp
 
+mkdir ~/.templates
+rm -rf ~/Documents
+rm -rf ~/Pictures
+rm -rf ~/Public
+rm -rf ~/Templates
+
 yadm clone https://github.com/Djaler/dotfiles.git > /dev/null 2>&1
 yadm reset --hard origin/master > /dev/null 2>&1
+
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
 
 sudo sh -c 'echo "#!/bin/sh" > /etc/grub.d/50_set-zero-timeout'
 sudo sh -c 'echo "set timeout=0" >> /etc/grub.d/50_set-zero-timeout'
 
-gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
+sudo sh -c 'echo "#<file system>			<mount point>				<type>	<options>		<dump> <pass>" > /etc/fstab'
+sudo sh -c 'echo "/dev/sda1			/					ext4	defaults,lazytime	0	1" >> /etc/fstab'
+#sudo sh -c 'echo "/dev/sdb1			/media					ext4	defaults		0	2" >> /etc/fstab'
+sudo sh -c 'echo "/media/Dropbox			/home/djaler/Dropbox			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "/media/Downloads		/home/djaler/Downloads			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "/media/Videos			/home/djaler/Videos			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "/media/Dropbox/Music		/home/djaler/Music			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "/media/Dropbox/Projects		/home/djaler/Projects			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "/media/Dropbox/Stuff		/home/djaler/Stuff			none	bind			0	0" >> /etc/fstab'
+sudo sh -c 'echo "tmpfs				/home/djaler/.cache/google-chrome	tmpfs	defaults		0	0" >> /etc/fstab'
+sudo sh -c 'echo "tmpfs				/tmp					tmpfs	rw,nosuid,nodev		0	0" >> /etc/fstab'
 
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
+
+ln -s /media/Steam ~/.steam
 
 sudo reboot
