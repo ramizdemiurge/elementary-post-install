@@ -58,6 +58,8 @@ echo "Install Virtualbox"
 sudo apt-get install -y virtualbox-5.1 > /dev/null 2>&1
 echo "Install Puddletag"
 sudo apt-get install -y puddletag > /dev/null 2>&1
+echo "Install Deluge"
+sudo apt-get install -y deluge > /dev/null 2>&1
 echo "Install Gparted"
 sudo apt-get install -y gparted > /dev/null 2>&1
 echo "Install Gnome system monitor"
@@ -97,9 +99,6 @@ echo "Install custom icon theme"
 wget https://www.dropbox.com/s/vtovnhz8a0simgd/elementary-djaler.deb?raw=1 -O elementary-djaler.deb > /dev/null 2>&1
 sudo apt install ./elementary-djaler.deb -y > /dev/null 2>&1
 gsettings set org.gnome.desktop.interface icon-theme elementary-djaler
-echo "Install Transmission"
-wget https://www.dropbox.com/s/geamb02ngdx8uqe/transmission.deb?raw=1 -O transmission.deb > /dev/null 2>&1
-sudo apt install ./transmission.deb -y > /dev/null 2>&1
 echo "Install Zsh"
 wget https://www.dropbox.com/s/9zb4ttn8tez3vn3/zsh-common_5.3-1_all.deb?raw=1 -O zsh-common.deb > /dev/null 2>&1
 sudo apt install ./zsh-common.deb -y > /dev/null 2>&1
