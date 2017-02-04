@@ -36,8 +36,8 @@ echo
 echo "*** Install packages ***"
 echo "Install elementary Tweaks"
 sudo apt-get install -y elementary-tweaks > /dev/null 2>&1
-#echo "*** Install Nvidia driver ***"
-#sudo apt-get install -y nvidia-367 nvidia-prime > /dev/null 2>&1
+echo "*** Install Nvidia driver ***"
+sudo apt-get install -y nvidia-378 nvidia-prime > /dev/null 2>&1
 echo "Install Quodlibet"
 sudo apt-get install -y quodlibet > /dev/null 2>&1
 echo "Install Libre Office"
@@ -143,12 +143,7 @@ yadm reset --hard origin/master > /dev/null 2>&1
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
 
-sudo sh -c 'echo "#!/bin/sh" > /etc/grub.d/50_set-zero-timeout'
-sudo sh -c 'echo "set timeout=0" >> /etc/grub.d/50_set-zero-timeout'
-
-sudo sh -c 'echo "#<file system>			<mount point>				<type>	<options>		<dump> <pass>" > /etc/fstab'
-sudo sh -c 'echo "/dev/sda1			/					ext4	defaults,lazytime	0	1" >> /etc/fstab'
-#sudo sh -c 'echo "/dev/sdb1			/media					ext4	defaults		0	2" >> /etc/fstab'
+sudo sh -c 'echo "/dev/sdb1			/media					ext4	defaults		0	2" >> /etc/fstab'
 sudo sh -c 'echo "/media/Dropbox			/home/djaler/Dropbox			none	bind			0	0" >> /etc/fstab'
 sudo sh -c 'echo "/media/Downloads		/home/djaler/Downloads			none	bind			0	0" >> /etc/fstab'
 sudo sh -c 'echo "/media/Videos			/home/djaler/Videos			none	bind			0	0" >> /etc/fstab'
