@@ -105,6 +105,11 @@ sudo apt install ./zsh-common.deb -y > /dev/null 2>&1
 wget https://www.dropbox.com/s/qplfrzquplvkdid/zsh_5.3-1_amd64.deb?raw=1 -O zsh.deb > /dev/null 2>&1
 sudo apt install ./zsh.deb -y > /dev/null 2>&1
 sudo -S chsh -s '/bin/zsh' "${USER}"
+echo "Install Electrum"
+wget https://www.dropbox.com/s/yd7od0pqf8olcuo/python-electrum_2.7.9-1_all.deb?raw=1 -O python-electrum.deb > /dev/null 2>&1
+sudo apt install ./python-electrum.deb -y > /dev/null 2>&1
+wget https://www.dropbox.com/s/gvmgcrn72qnf04n/electrum_2.7.9-1_all.deb?raw=1 -O electrum.deb > /dev/null 2>&1
+sudo apt install ./electrum.deb -y > /dev/null 2>&1
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox > /dev/null 2>&1
 bash elementary-dropbox/install.sh -n > /dev/null 2>&1
@@ -138,6 +143,15 @@ rm -rf ~/Pictures
 rm -rf ~/Public
 rm -rf ~/Templates
 
+sudo rm /usr/share/contractor/gnome-bluetooth.contract
+sudo rm /usr/share/contractor/print.contract
+sudo sh -c 'echo "[Contractor Entry]" > /usr/share/contractor/folder-openasroot.contract'
+sudo sh -c 'echo "Name=Открыть от имени суперпользователя" >> /usr/share/contractor/folder-openasroot.contract'
+sudo sh -c 'echo "Icon=pantheon-files" >> /usr/share/contractor/folder-openasroot.contract'
+sudo sh -c 'echo "MimeType=inode;" >> /usr/share/contractor/folder-openasroot.contract'
+sudo sh -c 'echo "Exec=gksudo pantheon-files %U" >> /usr/share/contractor/folder-openasroot.contract'
+sudo sh -c 'echo "Gettext-Domain=pantheon-files" >> /usr/share/contractor/folder-openasroot.contract'
+
 yadm clone https://github.com/Djaler/dotfiles.git > /dev/null 2>&1
 yadm reset --hard origin/master > /dev/null 2>&1
 
@@ -154,7 +168,5 @@ sudo sh -c 'echo "tmpfs				/home/djaler/.cache/google-chrome	tmpfs	defaults		0	0
 sudo sh -c 'echo "tmpfs				/tmp					tmpfs	rw,nosuid,nodev		0	0" >> /etc/fstab'
 
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
-
-ln -s /media/Steam ~/.steam
 
 sudo reboot
