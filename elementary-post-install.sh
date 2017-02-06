@@ -54,6 +54,7 @@ echo "Install Bleachbit"
 sudo apt-get install -y bleachbit > /dev/null 2>&1
 echo "Install Google Chrome"
 sudo apt-get install -y google-chrome-stable > /dev/null 2>&1
+sudo rm /etc/apt/sources.list.d/google.list
 echo "Install Virtualbox"
 sudo apt-get install -y virtualbox-5.1 > /dev/null 2>&1
 echo "Install Puddletag"
@@ -117,6 +118,7 @@ echo
 
 echo "*** Uninstall packages ***"
 sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications > /dev/null 2>&1
+sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls > /dev/null 2>&1
 sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan screenshot-tool audience snap-photobooth > /dev/null 2>&1
 sudo apt-get purge -y python3-apport apport-symptoms > /dev/null 2>&1
 sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base > /dev/null 2>&1
@@ -125,6 +127,7 @@ sudo apt-get purge -y fonts-noto-cjk > /dev/null 2>&1
 sudo apt-get purge -y gnome-orca > /dev/null 2>&1
 sudo apt-get purge -y mpv > /dev/null 2>&1
 sudo apt-get purge -y evolution-data-server zeitgeist-core > /dev/null 2>&1
+sudo apt-get purge -y xserver-xorg-input-all xserver-xorg-input-synaptics xserver-xorg-video-qxl xserver-xorg-video-vesa xserver-xorg-video-nouveau xserver-xorg-video-amdgpu xserver-xorg-input-wacom xserver-xorg-input-vmmouse xserver-xorg-video-intel xserver-xorg-video-vmware xserver-xorg-video-all xserver-xorg-video-ati xserver-xorg-video-radeon > /dev/null 2>&1
 sudo apt-get autoremove -y > /dev/null 2>&1
 echo
 
@@ -142,6 +145,9 @@ rm -rf ~/Documents
 rm -rf ~/Pictures
 rm -rf ~/Public
 rm -rf ~/Templates
+rm -rf ~/.config/epiphany
+rm -rf ~/.local/share/scratch-text-editor
+rm -rf ~/.local/share/zeitgeist/
 
 sudo rm /usr/share/contractor/gnome-bluetooth.contract
 sudo rm /usr/share/contractor/print.contract
@@ -156,17 +162,22 @@ yadm clone https://github.com/Djaler/dotfiles.git > /dev/null 2>&1
 yadm reset --hard origin/master > /dev/null 2>&1
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
+gsettings set org.pantheon.files.preferences single-click false
+gsettings set org.gnome.gnome-screenshot auto-save-directory '~'
 
 sudo sh -c 'echo "/dev/sdb1			/media					ext4	defaults		0	2" >> /etc/fstab'
-sudo sh -c 'echo "/media/Dropbox			/home/djaler/Dropbox			none	bind			0	0" >> /etc/fstab'
-sudo sh -c 'echo "/media/Downloads		/home/djaler/Downloads			none	bind			0	0" >> /etc/fstab'
-sudo sh -c 'echo "/media/Videos			/home/djaler/Videos			none	bind			0	0" >> /etc/fstab'
-sudo sh -c 'echo "/media/Dropbox/Music		/home/djaler/Music			none	bind			0	0" >> /etc/fstab'
-sudo sh -c 'echo "/media/Dropbox/Projects		/home/djaler/Projects			none	bind			0	0" >> /etc/fstab'
-sudo sh -c 'echo "/media/Dropbox/Stuff		/home/djaler/Stuff			none	bind			0	0" >> /etc/fstab'
 sudo sh -c 'echo "tmpfs				/home/djaler/.cache/google-chrome	tmpfs	defaults		0	0" >> /etc/fstab'
 sudo sh -c 'echo "tmpfs				/tmp					tmpfs	rw,nosuid,nodev		0	0" >> /etc/fstab'
 
+ln -s /media/Dropbox ~/Dropbox
+ln -s /media/Downloads ~/Downloads
+ln -s /media/Videos ~/Videos
+ln -s ~/Dropbox/Music ~/Music
+ln -s ~/Dropbox/Stuff ~/Stuff
+ln -s ~/Dropbox/Projects ~/Projects
+
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
+
+sudo sed -ie 's/quiet splash/ipv6.disable=1/g' /etc/default/grub
 
 sudo reboot
