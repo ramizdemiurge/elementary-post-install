@@ -165,6 +165,10 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggl
 gsettings set org.pantheon.files.preferences single-click false
 gsettings set org.gnome.gnome-screenshot auto-save-directory '~'
 
+sudo systemctl disable avahi-daemon.service
+sudo systemctl disable whoopsie.service
+sudo systemctl disable brltty.service
+
 sudo sh -c 'echo "/dev/sdb1			/media					btrfs	defaults		0	2" >> /etc/fstab'
 sudo sh -c 'echo "tmpfs				/home/djaler/.cache/google-chrome	tmpfs	defaults		0	0" >> /etc/fstab'
 sudo sh -c 'echo "tmpfs				/tmp					tmpfs	rw,nosuid,nodev		0	0" >> /etc/fstab'
