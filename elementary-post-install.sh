@@ -3,139 +3,142 @@ clear
 cd /tmp
 
 echo "*** Enable add-apt-repository ***"
-sudo apt-get install -y software-properties-common > /dev/null 2>&1
+sudo apt-get install -y software-properties-common
 echo
 
 echo "*** Add repositories ***"
 echo "Add repository for elementary Tweaks"
-sudo add-apt-repository -y ppa:philip.scott/elementary-tweaks > /dev/null 2>&1
+sudo add-apt-repository -y ppa:philip.scott/elementary-tweaks
 echo "Add repository for Nvidia driver"
-sudo add-apt-repository -y ppa:graphics-drivers/ppa > /dev/null 2>&1
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
 echo "Add repository for Quodlibet"
-sudo add-apt-repository -y ppa:lazka/ppa > /dev/null 2>&1
+sudo add-apt-repository -y ppa:lazka/ppa
 echo "Add repository for Timeshift"
-sudo add-apt-repository -y ppa:teejee2008/ppa > /dev/null 2>&1
+sudo add-apt-repository -y ppa:teejee2008/ppa
 echo "Add repository for Java ***"
-sudo add-apt-repository -y ppa:webupd8team/java > /dev/null 2>&1
+sudo add-apt-repository -y ppa:webupd8team/java
 echo "Add repository for Sublime Text 3"
-sudo add-apt-repository -y ppa:webupd8team/sublime-text-3 > /dev/null 2>&1
+sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 echo "Add repository for Google Chrome"
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - > /dev/null 2>&1
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
 echo "Add repository for Virtualbox"
-wget -q -O - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add - > /dev/null 2>&1
+wget -q -O - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian/ xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 echo
 
 echo "*** Update repositories ***"
-sudo apt update > /dev/null 2>&1
+sudo apt update
 echo
 
 echo "*** Install packages ***"
 echo "Install elementary Tweaks"
-sudo apt-get install -y elementary-tweaks > /dev/null 2>&1
+sudo apt-get install -y elementary-tweaks
 echo "Install Nvidia driver"
-sudo apt-get install -y nvidia-378 nvidia-prime > /dev/null 2>&1
-sudo apt-get purge -y libcuda1-378 > /dev/null 2>&1
+sudo apt-get install -y nvidia-378 nvidia-prime
+sudo apt-get purge -y libcuda1-378
+echo "Install Intel driver"
+sudo apt-get install -y xserver-xorg-video-intel=2:2.99.917+git20160325-1ubuntu1.2
+sudo apt-mark hold xserver-xorg-video-intel
 echo "Install Quodlibet"
-sudo apt-get install -y quodlibet > /dev/null 2>&1
+sudo apt-get install -y quodlibet
 echo "Install Libre Office"
-sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-gtk libreoffice-l10n-ru libreoffice-style-sifr > /dev/null 2>&1
+sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-gtk libreoffice-l10n-ru libreoffice-style-sifr
 echo "Install Timeshift"
-sudo apt-get install -y timeshift > /dev/null 2>&1
+sudo apt-get install -y timeshift
 echo "Install Java"
 sudo debconf-set-selections <<< 'oracle-java8-installer shared/accepted-oracle-license-v1-1 select true'
 sudo debconf-set-selections <<< 'oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true'
-sudo apt-get install -y oracle-java8-installer > /dev/null 2>&1
+sudo apt-get install -y oracle-java8-installer
 echo "Install Sublime Text 3"
-sudo apt-get install -y sublime-text-installer > /dev/null 2>&1
+sudo apt-get install -y sublime-text-installer
 echo "Install Bleachbit"
-sudo apt-get install -y bleachbit > /dev/null 2>&1
+sudo apt-get install -y bleachbit
 echo "Install Google Chrome"
-sudo apt-get install -y google-chrome-stable > /dev/null 2>&1
+sudo apt-get install -y google-chrome-stable
 sudo rm /etc/apt/sources.list.d/google.list
 echo "Install Virtualbox"
-sudo apt-get install -y virtualbox-5.1 > /dev/null 2>&1
+sudo apt-get install -y virtualbox-5.1
 echo "Install Puddletag"
-sudo apt-get install -y puddletag > /dev/null 2>&1
+sudo apt-get install -y puddletag
 echo "Install Deluge"
-sudo apt-get install -y deluge > /dev/null 2>&1
+sudo apt-get install -y deluge
 echo "Install Gparted"
-sudo apt-get install -y gparted > /dev/null 2>&1
+sudo apt-get install -y gparted
 echo "Install Gnome system monitor"
-sudo apt-get install -y gnome-system-monitor > /dev/null 2>&1
+sudo apt-get install -y gnome-system-monitor
 echo "Install Gnome screenshot"
-sudo apt-get install -y gnome-screenshot > /dev/null 2>&1
+sudo apt-get install -y gnome-screenshot
 echo "Install Hack Font"
-sudo apt-get install -y fonts-hack-ttf > /dev/null 2>&1
+sudo apt-get install -y fonts-hack-ttf
 gsettings set org.gnome.desktop.interface monospace-font-name "Hack 10"
 echo "Install Gdebi"
-sudo apt-get install -y gdebi > /dev/null 2>&1
+sudo apt-get install -y gdebi
 echo "Install Git"
-sudo apt-get install -y git > /dev/null 2>&1
+sudo apt-get install -y git
 echo "Install Yadm"
-sudo apt-get install -y yadm > /dev/null 2>&1
+sudo apt-get install -y yadm
 echo "Install Mysql"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-sudo apt-get install -y mysql-client mysql-server > /dev/null 2>&1
+sudo apt-get install -y mysql-client mysql-server
 echo "Install Maven"
-sudo apt-get install -y maven > /dev/null 2>&1
+sudo apt-get install -y maven
 echo "Install Adb and Fastboot"
-sudo apt-get install -y adb fastboot > /dev/null 2>&1
+sudo apt-get install -y adb fastboot
 echo "Install Virtualenv"
-sudo apt-get install -y virtualenv > /dev/null 2>&1
+sudo apt-get install -y virtualenv
 echo "Install Preload"
-sudo apt-get install -y preload > /dev/null 2>&1
+sudo apt-get install -y preload
 echo "Install ppa-purge"
-sudo apt-get install -y ppa-purge > /dev/null 2>&1
+sudo apt-get install -y ppa-purge
 echo "Install Steam"
 sudo debconf-set-selections <<< 'steam steam/question select "I AGREE"'
-wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb  > /dev/null 2>&1
-sudo apt install ./steam.deb -y > /dev/null 2>&1
+wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb 
+sudo apt install ./steam.deb -y
 echo "Install bomi"
-wget https://www.dropbox.com/s/idz12x78hvlxu2q/bomi.deb?raw=1 -O bomi.deb> /dev/null 2>&1
-sudo apt install ./bomi.deb -y > /dev/null 2>&1
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABCPTkQBglJ3k7ryURWCsCBa/bomi.deb?raw=1 -O bomi.deb
+sudo apt install ./bomi.deb -y
 echo "Install custom icon theme"
-wget https://www.dropbox.com/s/vtovnhz8a0simgd/elementary-djaler.deb?raw=1 -O elementary-djaler.deb > /dev/null 2>&1
-sudo apt install ./elementary-djaler.deb -y > /dev/null 2>&1
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABXhrHOztoAG10khWUSQ-ASa/elementary-djaler.deb?raw=1 -O elementary-djaler.deb
+sudo apt install ./elementary-djaler.deb -y
 gsettings set org.gnome.desktop.interface icon-theme elementary-djaler
 echo "Install Zsh"
-wget https://www.dropbox.com/s/9zb4ttn8tez3vn3/zsh-common_5.3-1_all.deb?raw=1 -O zsh-common.deb > /dev/null 2>&1
-sudo apt install ./zsh-common.deb -y > /dev/null 2>&1
-wget https://www.dropbox.com/s/qplfrzquplvkdid/zsh_5.3-1_amd64.deb?raw=1 -O zsh.deb > /dev/null 2>&1
-sudo apt install ./zsh.deb -y > /dev/null 2>&1
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AADloVS30EwzfB_AWrnjN81pa/zsh-common.deb?raw=1 -O zsh-common.deb
+sudo apt install ./zsh-common.deb -y
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABpsomgJRYKJLYvUMDgCNgAa/zsh.deb?raw=1 -O zsh.deb
+sudo apt install ./zsh.deb -y
 sudo -S chsh -s '/bin/zsh' "${USER}"
 echo "Install Electrum"
-wget https://www.dropbox.com/s/yd7od0pqf8olcuo/python-electrum_2.7.9-1_all.deb?raw=1 -O python-electrum.deb > /dev/null 2>&1
-sudo apt install ./python-electrum.deb -y > /dev/null 2>&1
-wget https://www.dropbox.com/s/gvmgcrn72qnf04n/electrum_2.7.9-1_all.deb?raw=1 -O electrum.deb > /dev/null 2>&1
-sudo apt install ./electrum.deb -y > /dev/null 2>&1
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAH39Okv49rQuiGdi_MuK5Ia/python-electrum.deb?raw=1 -O python-electrum.deb
+sudo apt install ./python-electrum.deb -y
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAUxsVVTi662ua4gDtCcwHZa/electrum.deb?raw=1 -O electrum.deb
+sudo apt install ./electrum.deb -y
 echo "Install Dropbox"
-git clone https://github.com/zant95/elementary-dropbox > /dev/null 2>&1
-bash elementary-dropbox/install.sh -n > /dev/null 2>&1
+git clone https://github.com/zant95/elementary-dropbox
+bash elementary-dropbox/install.sh -n
 echo
 
 echo "*** Uninstall packages ***"
-sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications > /dev/null 2>&1
-sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls > /dev/null 2>&1
-sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan screenshot-tool audience snap-photobooth > /dev/null 2>&1
-sudo apt-get purge -y python3-apport apport-symptoms > /dev/null 2>&1
-sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base > /dev/null 2>&1
-sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian wcatalan > /dev/null 2>&1
-sudo apt-get purge -y fonts-noto-cjk > /dev/null 2>&1
-sudo apt-get purge -y gnome-orca > /dev/null 2>&1
-sudo apt-get purge -y mpv > /dev/null 2>&1
-sudo apt-get purge -y evolution-data-server zeitgeist-core > /dev/null 2>&1
-sudo apt-get purge -y xserver-xorg-input-all xserver-xorg-input-synaptics xserver-xorg-video-qxl xserver-xorg-video-vesa xserver-xorg-video-nouveau xserver-xorg-video-amdgpu xserver-xorg-input-wacom xserver-xorg-input-vmmouse xserver-xorg-video-intel xserver-xorg-video-vmware xserver-xorg-video-all xserver-xorg-video-ati xserver-xorg-video-radeon > /dev/null 2>&1
-sudo apt-get autoremove -y > /dev/null 2>&1
+sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications
+sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls
+sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan screenshot-tool audience snap-photobooth
+sudo apt-get purge -y python3-apport apport-symptoms
+sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base
+sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian wcatalan
+sudo apt-get purge -y fonts-noto-cjk
+sudo apt-get purge -y gnome-orca
+sudo apt-get purge -y mpv
+sudo apt-get purge -y evolution-data-server zeitgeist-core
+sudo apt-get purge -y xserver-xorg-input-all xserver-xorg-input-synaptics xserver-xorg-video-qxl xserver-xorg-video-vesa xserver-xorg-video-nouveau xserver-xorg-video-amdgpu xserver-xorg-input-wacom xserver-xorg-input-vmmouse xserver-xorg-video-vmware xserver-xorg-video-all xserver-xorg-video-ati xserver-xorg-video-radeon
+sudo apt-get autoremove -y
 echo
 
 echo "*** Upgrade packages ***"
-sudo apt-get upgrade -y > /dev/null 2>&1
+sudo apt-get upgrade -y
 echo
 
-git clone https://github.com/png2378/telegram-icon-updater.git > /dev/null 2>&1
+git clone https://github.com/png2378/telegram-icon-updater.git
 cd telegram-icon-updater
 bash setup.sh --install
 cd /tmp
@@ -158,8 +161,8 @@ sudo sh -c 'echo "MimeType=inode;" >> /usr/share/contractor/folder-openasroot.co
 sudo sh -c 'echo "Exec=gksudo pantheon-files %U" >> /usr/share/contractor/folder-openasroot.contract'
 sudo sh -c 'echo "Gettext-Domain=pantheon-files" >> /usr/share/contractor/folder-openasroot.contract'
 
-yadm clone https://github.com/Djaler/dotfiles.git > /dev/null 2>&1
-yadm reset --hard origin/master > /dev/null 2>&1
+yadm clone https://github.com/Djaler/dotfiles.git
+yadm reset --hard origin/master
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
 gsettings set org.pantheon.files.preferences single-click false
@@ -179,6 +182,7 @@ ln -s /media/Videos ~/Videos
 ln -s ~/Dropbox/Music ~/Music
 ln -s ~/Dropbox/Stuff ~/Stuff
 ln -s ~/Dropbox/Projects ~/Projects
+ln -s /media/Steam ~/.local/share/Steam
 
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
 
