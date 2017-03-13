@@ -67,8 +67,6 @@ echo "Install Gparted"
 sudo apt-get install -y gparted
 echo "Install Gnome system monitor"
 sudo apt-get install -y gnome-system-monitor
-echo "Install Gnome screenshot"
-sudo apt-get install -y gnome-screenshot
 echo "Install Hack Font"
 sudo apt-get install -y fonts-hack-ttf
 gsettings set org.gnome.desktop.interface monospace-font-name "Hack 10"
@@ -144,6 +142,9 @@ rm -rf ~/Documents
 rm -rf ~/Pictures
 rm -rf ~/Public
 rm -rf ~/Templates
+rm -rf ~/Downloads
+rm -rf ~/Music
+rm -rf ~/Videos
 rm -rf ~/.config/epiphany
 rm -rf ~/.local/share/scratch-text-editor
 
