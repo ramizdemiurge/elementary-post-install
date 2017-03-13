@@ -80,8 +80,6 @@ echo "Install Mysql"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 sudo apt-get install -y mysql-client mysql-server
-echo "Install Maven"
-sudo apt-get install -y maven
 echo "Install Adb and Fastboot"
 sudo apt-get install -y adb fastboot
 echo "Install Virtualenv"
@@ -119,8 +117,8 @@ echo
 
 echo "*** Uninstall packages ***"
 sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications
-sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls switchboard-plug-locale
-sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan audience snap-photobooth
+sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls switchboard-plug-locale switchboard-plug-gcc-color
+sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan audience snap-photobooth evolution-data-server
 sudo apt-get purge -y python3-apport apport-symptoms
 sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base
 sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian wcatalan
@@ -159,11 +157,21 @@ sudo sh -c 'echo "Gettext-Domain=pantheon-files" >> /usr/share/contractor/folder
 yadm clone https://github.com/Djaler/dotfiles.git
 yadm reset --hard origin/master
 
-gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
+gsettings set apps.light-locker lock-on-suspend false
+gsettings set apps.light-locker lock-after-screensaver 0
+
+gsettings set org.pantheon.desktop.wingpanel.indicators.power show-percentage true
+gsettings set org.pantheon.desktop.slingshot show-category-filter false
+gsettings set org.pantheon.terminal.settings unsafe-paste-alert false
 gsettings set org.pantheon.files.preferences single-click false
 gsettings set net.launchpad.screenshot folder-dir '/home/djaler'
 
-sudo sh -c 'echo "/dev/sdb1			/media					btrfs	defaults		0	2" >> /etc/fstab'
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle','terminate:ctrl_alt_bksp']"
+
+
+sudo sh -c 'echo "/dev/sdb1			/media					btrfs	defaults		0	0" >> /etc/fstab'
 sudo sh -c 'echo "tmpfs				/tmp					tmpfs	rw,nosuid,nodev		0	0" >> /etc/fstab'
 
 ln -s /media/Dropbox ~/Dropbox
