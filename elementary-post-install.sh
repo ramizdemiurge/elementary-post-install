@@ -25,6 +25,8 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 echo "Add repository for Virtualbox"
 wget -q -O - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian/ xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+echo "Enable partner repository"
+sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
 echo
 
 echo "*** Update repositories ***"
@@ -38,7 +40,7 @@ echo "Install Nvidia driver"
 sudo apt-get install -y nvidia-378 nvidia-prime
 sudo apt-get purge -y libcuda1-378
 echo "Install Intel driver"
-sudo apt-get install -y xserver-xorg-video-intel=2:2.99.917+git20160325-1ubuntu1.2
+sudo apt-get install -y xserver-xorg-video-intel=2:2.99.917+git20160325-1ubuntu1.2 --allow-downgrades
 sudo apt-mark hold xserver-xorg-video-intel
 echo "Install Quodlibet"
 sudo apt-get install -y quodlibet
@@ -88,6 +90,8 @@ echo "Install Preload"
 sudo apt-get install -y preload
 echo "Install ppa-purge"
 sudo apt-get install -y ppa-purge
+echo "Install unrar"
+sudo apt-get install -y unrar
 echo "Install Steam"
 sudo debconf-set-selections <<< 'steam steam/question select "I AGREE"'
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb 
@@ -156,6 +160,7 @@ sudo sh -c 'echo "Gettext-Domain=pantheon-files" >> /usr/share/contractor/folder
 
 yadm clone https://github.com/Djaler/dotfiles.git
 yadm reset --hard origin/master
+yadm remote set-url origin git@github.com:Djaler/dotfiles.git
 
 gsettings set apps.light-locker lock-on-suspend false
 gsettings set apps.light-locker lock-after-screensaver 0
@@ -185,7 +190,7 @@ ln -s /media/.dropbox ~/.dropbox
 
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
 
-sudo sed -ie 's/quiet splash//g' /etc/default/grub
+sudo sed -i 's/quiet splash//g' /etc/default/grub
 sudo update-grub
 
 sudo reboot
