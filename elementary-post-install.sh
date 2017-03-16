@@ -95,25 +95,28 @@ sudo apt-get install -y unrar
 echo "Install Steam"
 sudo debconf-set-selections <<< 'steam steam/question select "I AGREE"'
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb 
-sudo apt install ./steam.deb -y
+sudo apt install -y ./steam.deb
 echo "Install bomi"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABCPTkQBglJ3k7ryURWCsCBa/bomi.deb?raw=1 -O bomi.deb
-sudo apt install ./bomi.deb -y
+sudo apt install -y ./bomi.deb
 echo "Install custom icon theme"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABXhrHOztoAG10khWUSQ-ASa/elementary-djaler.deb?raw=1 -O elementary-djaler.deb
-sudo apt install ./elementary-djaler.deb -y
+sudo apt install -y ./elementary-djaler.deb
 gsettings set org.gnome.desktop.interface icon-theme elementary-djaler
 echo "Install Zsh"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AADloVS30EwzfB_AWrnjN81pa/zsh-common.deb?raw=1 -O zsh-common.deb
-sudo apt install ./zsh-common.deb -y
+sudo apt install -y ./zsh-common.deb
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABpsomgJRYKJLYvUMDgCNgAa/zsh.deb?raw=1 -O zsh.deb
-sudo apt install ./zsh.deb -y
+sudo apt install -y ./zsh.deb
 sudo -S chsh -s '/bin/zsh' "${USER}"
 echo "Install Electrum"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAH39Okv49rQuiGdi_MuK5Ia/python-electrum.deb?raw=1 -O python-electrum.deb
-sudo apt install ./python-electrum.deb -y
+sudo apt install -y ./python-electrum.deb
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAUxsVVTi662ua4gDtCcwHZa/electrum.deb?raw=1 -O electrum.deb
-sudo apt install ./electrum.deb -y
+sudo apt install -y ./electrum.deb
+ech "Install Discord"
+wget https://discordapp.com/api/download?platform=linux&format=deb -O discord.deb
+sudo apt install -y ./discord.deb
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox
 bash elementary-dropbox/install.sh -n
