@@ -7,6 +7,8 @@ sudo apt-get install -y software-properties-common
 echo
 
 echo "*** Add repositories ***"
+echo "Switch to daily elementary repository"
+sudo sed -i 's/stable/daily/g' /etc/apt/sources.list.d/elementary.list
 echo "Add repository for elementary Tweaks"
 sudo add-apt-repository -y ppa:philip.scott/elementary-tweaks
 echo "Add repository for Nvidia driver"
@@ -26,7 +28,7 @@ echo "Add repository for Virtualbox"
 wget -q -O - https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian/ xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 echo "Enable partner repository"
-sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
+sudo sed -i "/^# deb .*partner/ s/^# //" /etc/apt/sources.list
 echo
 
 echo "*** Update repositories ***"
@@ -37,11 +39,8 @@ echo "*** Install packages ***"
 echo "Install elementary Tweaks"
 sudo apt-get install -y elementary-tweaks
 echo "Install Nvidia driver"
-sudo apt-get install -y nvidia-378 nvidia-prime
-sudo apt-get purge -y libcuda1-378
-echo "Install Intel driver"
-sudo apt-get install -y xserver-xorg-video-intel=2:2.99.917+git20160325-1ubuntu1.2 --allow-downgrades
-sudo apt-mark hold xserver-xorg-video-intel
+sudo apt-get install -y nvidia-381 nvidia-prime
+sudo apt-get purge -y libcuda1-381
 echo "Install Quodlibet"
 sudo apt-get install -y quodlibet
 echo "Install Libre Office"
@@ -98,7 +97,7 @@ wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo apt install -y ./steam.deb
 echo "Install bomi"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABCPTkQBglJ3k7ryURWCsCBa/bomi.deb?raw=1 -O bomi.deb
-sudo apt install -y ./bomi.deb
+sudo apt install -y ./bomi.deb --no-install-recommends
 echo "Install custom icon theme"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABXhrHOztoAG10khWUSQ-ASa/elementary-djaler.deb?raw=1 -O elementary-djaler.deb
 sudo apt install -y ./elementary-djaler.deb
@@ -123,13 +122,14 @@ bash elementary-dropbox/install.sh -n
 echo
 
 echo "*** Uninstall packages ***"
-sudo apt-get purge -y wingpanel-indicator-bluetooth wingpanel-indicator-notifications
-sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls switchboard-plug-locale switchboard-plug-gcc-color
+sudo apt-get purge -y wingpanel-indicator-notifications wingpanel-indicator-bluetooth
+sudo apt-get purge -y switchboard-plug-gcc-wacom switchboard-plug-printers switchboard-plug-sharing switchboard-plug-online-accounts switchboard-plug-parental-controls switchboard-plug-locale switchboard-plug-gcc-color switchboard-plug-bluetooth
 sudo apt-get purge -y capnet-assist libscratchcore0 appcenter pantheon-calculator libmaya-calendar0 epiphany-browser-data libnoise-core0 simple-scan audience snap-photobooth evolution-data-server
 sudo apt-get purge -y python3-apport apport-symptoms
 sudo apt-get purge -y language-pack-bg language-pack-bg-base language-pack-gnome-bg language-pack-gnome-bg-base language-pack-ca language-pack-ca-base language-pack-gnome-ca language-pack-gnome-ca-base language-pack-cs language-pack-cs-base language-pack-gnome-cs language-pack-gnome-cs-base language-pack-da language-pack-da-base language-pack-gnome-da language-pack-gnome-da-base language-pack-hu language-pack-hu-base language-pack-gnome-hu language-pack-gnome-hu-base language-pack-id language-pack-id-base language-pack-gnome-id language-pack-gnome-id-base language-pack-ja language-pack-ja-base language-pack-gnome-ja language-pack-gnome-ja-base language-pack-ko language-pack-ko-base language-pack-gnome-ko language-pack-gnome-ko-base language-pack-nb language-pack-nb-base language-pack-gnome-nb language-pack-gnome-nb-base language-pack-nl language-pack-nl-base language-pack-gnome-nl language-pack-gnome-nl-base language-pack-pl language-pack-pl-base language-pack-gnome-pl language-pack-gnome-pl-base language-pack-sv language-pack-sv-base language-pack-gnome-sv language-pack-gnome-sv-base language-pack-th language-pack-th-base language-pack-gnome-th language-pack-gnome-th-base language-pack-tr language-pack-tr-base language-pack-gnome-tr language-pack-gnome-tr-base language-pack-uk language-pack-uk-base language-pack-gnome-uk language-pack-gnome-uk-base language-pack-vi language-pack-vi-base language-pack-gnome-vi language-pack-gnome-vi-base language-pack-zh language-pack-zh-base language-pack-gnome-zh language-pack-gnome-zh-base language-pack-zh-hant language-pack-zh-hant-base language-pack-gnome-zh-hant language-pack-gnome-zh-hant-base
 sudo apt-get purge -y wbulgarian wdanish wdutch wpolish wukrainian wnorwegian wcatalan
 sudo apt-get purge -y mpv
+sudo apt-get purge -y fonts-noto-cjk
 sudo apt-get autoremove -y
 echo
 
@@ -190,6 +190,7 @@ ln -s ~/Dropbox/Stuff ~/Stuff
 ln -s ~/Dropbox/Projects ~/Projects
 ln -s /media/Steam ~/.local/share/Steam
 ln -s /media/.dropbox ~/.dropbox
+ln -s /media/.Trash-1000 ~/.Trash
 
 sudo sh -c 'echo "LANG=ru_RU.UTF-8" > /etc/default/locale'
 
