@@ -113,9 +113,12 @@ wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAH39Okv49rQuiGdi_MuK5Ia/python
 sudo apt install -y ./python-electrum.deb
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAUxsVVTi662ua4gDtCcwHZa/electrum.deb?raw=1 -O electrum.deb
 sudo apt install -y ./electrum.deb
-ech "Install Discord"
+echo "Install Discord"
 wget https://discordapp.com/api/download?platform=linux&format=deb -O discord.deb
 sudo apt install -y ./discord.deb
+echo "Install Slack"
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAzLx3p3upL3r7Qpt3icw2xa/slack.deb?raw=1 -O slack.deb
+sudo apt install -y ./slack.deb
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox
 bash elementary-dropbox/install.sh -n
@@ -154,6 +157,7 @@ rm -rf ~/.config/epiphany
 rm -rf ~/.local/share/scratch-text-editor
 
 sudo rm /usr/share/contractor/print.contract
+sudo rm /usr/share/contractor/gnome-bluetooth.contract
 sudo sh -c 'echo "[Contractor Entry]" > /usr/share/contractor/folder-openasroot.contract'
 sudo sh -c 'echo "Name=Открыть от имени суперпользователя" >> /usr/share/contractor/folder-openasroot.contract'
 sudo sh -c 'echo "Icon=pantheon-files" >> /usr/share/contractor/folder-openasroot.contract'
