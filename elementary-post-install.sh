@@ -71,8 +71,6 @@ sudo apt-get install -y gnome-system-monitor
 echo "Install Hack Font"
 sudo apt-get install -y fonts-hack-ttf
 gsettings set org.gnome.desktop.interface monospace-font-name "Hack 10"
-echo "Install Gdebi"
-sudo apt-get install -y gdebi
 echo "Install Git"
 sudo apt-get install -y git
 echo "Install Yadm"
@@ -119,6 +117,9 @@ sudo apt install -y ./discord.deb
 echo "Install Slack"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAzLx3p3upL3r7Qpt3icw2xa/slack.deb?raw=1 -O slack.deb
 sudo apt install -y ./slack.deb
+echo "Install Eddy"
+wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABKGb8jRKO10QRSGqUYRzuwa/eddy.deb?raw=1 -O eddy.deb
+sudo apt install -y ./eddy.deb
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox
 bash elementary-dropbox/install.sh -n
