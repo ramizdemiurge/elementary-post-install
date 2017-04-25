@@ -9,6 +9,9 @@ echo
 echo "*** Add repositories ***"
 echo "Switch to daily elementary repository"
 sudo sed -i 's/stable/daily/g' /etc/apt/sources.list.d/elementary.list
+echo "Add AppCenter repository"
+wget -qO - https://packages.elementary.io/key.asc | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packages.elementary.io/appcenter xenial main" >> /etc/apt/sources.list.d/appcenter.list'
 echo "Add repository for elementary Tweaks"
 sudo add-apt-repository -y ppa:philip.scott/elementary-tweaks
 echo "Add repository for Nvidia driver"
@@ -89,6 +92,8 @@ echo "Install ppa-purge"
 sudo apt-get install -y ppa-purge
 echo "Install unrar"
 sudo apt-get install -y unrar
+echo "Install Eddy"
+sudo apt-get install -y com.github.donadigo.eddy --no-install-recommends
 echo "Install Steam"
 sudo debconf-set-selections <<< 'steam steam/question select "I AGREE"'
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb 
@@ -117,9 +122,6 @@ sudo apt install -y ./discord.deb
 echo "Install Slack"
 wget https://www.dropbox.com/sh/k7572lqytnw2iry/AAAzLx3p3upL3r7Qpt3icw2xa/slack.deb?raw=1 -O slack.deb
 sudo apt install -y ./slack.deb
-echo "Install Eddy"
-wget https://www.dropbox.com/sh/k7572lqytnw2iry/AABKGb8jRKO10QRSGqUYRzuwa/eddy.deb?raw=1 -O eddy.deb
-sudo apt install -y ./eddy.deb
 echo "Install Dropbox"
 git clone https://github.com/zant95/elementary-dropbox
 bash elementary-dropbox/install.sh -n
