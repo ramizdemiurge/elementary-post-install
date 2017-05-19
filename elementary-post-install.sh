@@ -1,3 +1,4 @@
+#upd
 clear
 
 cd /tmp
